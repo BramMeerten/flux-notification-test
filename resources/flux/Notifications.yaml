@@ -1,0 +1,21 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: my-provider
+  namespace: flux-system
+spec:
+  type: generic
+  address: http://listener.listener.svc.cluster.local:8456
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: my-alert
+  namespace: flux-system
+spec:
+  providerRef:
+    name: my-provider
+  eventSources:
+    - kind: Kustomization
+      name: '*'
+      namespace: flux-system

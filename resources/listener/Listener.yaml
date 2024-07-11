@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: listener
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listener
+  namespace: listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: listener
+  template:
+    metadata:
+      labels:
+        app: listener
+    spec:
+      containers:
+      - image: ealen/echo-server:latest
+        imagePullPolicy: IfNotPresent
+        name: listener
+        ports:
+        - containerPort: 80
+        env:
+        - name: PORT
+          value: "80"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: listener
+  namespace: listener
+spec:
+  ports:
+    - port: 8456
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: listener
