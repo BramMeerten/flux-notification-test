@@ -13,7 +13,9 @@ kubectl logs -f -n listener deployment/listener
 kubectl apply -f resources/flux-system/gotk-components.yaml
 ```
 
-`got-components.yaml` was generated via flux (you don't need to run this anymore):
+<details>
+<summary><i>gotk-components.yaml was generated via flux cli</i></summary>
+
 ```bash
 brew install fluxcd/tap/flux
 flux check --pre
@@ -23,9 +25,8 @@ flux bootstrap github \
   --branch=main \
   --path=./resources/ \
   --personal
-git pull
-
 ```
+</details>
 
 ### Listener that will receive flux notification events
 This will start a web server that listens on port 8456 and logs the incoming requests (and echos them back).
