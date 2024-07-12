@@ -9,6 +9,8 @@ kind: Deployment
 metadata:
   namespace: my-app
   name: my-app
+  labels:
+    test-label: test-value-for-label
 spec:
   replicas: 1
   selector:

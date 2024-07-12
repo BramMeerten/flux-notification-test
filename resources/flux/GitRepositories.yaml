@@ -6,5 +6,5 @@ metadata:
 spec:
   interval: 1m
   ref:
-    branch: main
+    branch: test-updates
   url: https://github.com/BramMeerten/flux-notification-test
