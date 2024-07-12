@@ -4,7 +4,7 @@ metadata:
   name: my-app-kustomization
   namespace: flux-system
 spec:
-  interval: 30m0s
+  interval: 5m0s
   path: ./resources/my-app
   prune: true
   retryInterval: 2m0s
